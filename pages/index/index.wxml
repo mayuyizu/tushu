@@ -1,0 +1,54 @@
+<view class="search-container">
+  <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
+  <!--<icon bindtap="searchClickEvent"  type="search" size="20"/>-->
+  <view class="{{flag==0?'hide':'show'}}"><icon bindtap="clearBtn" type="clear" color="#FFFFFF" /></view>
+</view>
+
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px"
+  bindscrolltolower="scrollLowerEvent">
+
+    <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
+      <icon type="cancel" color="#B0AAAA" size="50" />
+      <view><text>没有找到相关图书</text></view>
+    </view>
+
+    <view class="logo" wx:if="{{isInit}}">
+      <image src="../../images/bk.png" />
+      <view><text>行万里路·读万卷书</text></view>
+      <!--<text style="font-size:30rpx;">读万卷书·行万里路</text>-->
+    </view>
+
+    <view class="header" wx:if="{{totalRecord > 0 && !isInit}}">
+      <!--<text>{{totalRecord}}个搜索结果</text>-->
+      共 <text>{{totalRecord}}</text> 个搜索结果
+    </view>
+
+    <view class="common-list" wx:if="{{totalRecord > 0}}">
+
+      <block wx:for="{{pageData}}" wx:for-item="item">
+        <view class="list-item" data-bid="{{item.id}}" bindtap="toDetailPage">
+          <view class="index-list-item">
+            <view class="cover">
+              <image class="cover-img" src="{{item.image}}"></image>
+            </view>
+            <view class="content">
+              <view class="title">{{item.title}}</view>
+              <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
+
+              <!--<text class="desc">{{item.rating.average == '0.0' ? '无' : item.rating.average}}/<block wx:for="{{item.author}}" wx:for-item="it" wx:key="*this">{{it}}/</block>{{item.pubdate}}</text>-->
+              <block wx:for="{{stars}}" wx:for-item="sitem">
+                <image class="star-image" style="left: {{(sitem==2?0:sitem-sitem/2-1)*30}}rpx" 
+                  src="{{item.rating.average >= sitem ? selectedSrc : (sitem-item.rating.average >= 2 ? normalSrc : (sitem-item.rating.average >= 1?halfSrc:selectedSrc))}}"></image>
+              </block><text class="grades">{{item.rating.average}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+    </view>
+
+    <!--<view class="refresh-footer" wx:if="{{loadingMore}}">
+      <icon type="waiting" size="30" color="{{footerIconColor}}"  />
+    </view>-->
+
+</scroll-view>

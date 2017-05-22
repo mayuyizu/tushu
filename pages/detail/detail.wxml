@@ -1,0 +1,38 @@
+<view wx:if="{{bookData}}">
+    <view class="cover-container" style="background-image: url('http://a1.qpic.cn/psb?/V12aZXw23zEB3R/QY.cmKNgkx8FG4wH*HkFmH5dEmJhpRuh*b.URJlN690!/b/dPYAAAAAAAAA&bo=dwHhAHcB4QADCSw!&rf=viewer_4');">
+        <image src="{{bookData.image}}"></image>
+    </view>
+
+    <view class="book-meta">
+        <view class="meta-info">
+            <text class="book-title">{{bookData.title}}</text>
+            <text class="other-meta" style="margin-top:6rpx;">作者：<block wx:for="{{bookData.author}}" wx:for-item="it" wx:key="*this">{{it}} </block></text>
+            <text class="other-meta">出版社：{{bookData.publisher}}</text>
+            <text class="other-meta">出版日期：{{bookData.pubdate}}</text>
+        </view>
+        <view class="range">
+            <text class="score">{{bookData.rating.average}}</text>
+            <block wx:for="{{stars}}" wx:for-item="sitem">
+                <image class="star-image" style="left: {{(sitem==2?0:sitem-sitem/2-1)*30}}rpx" 
+                  src="{{bookData.rating.average >= sitem ? selectedSrc : (sitem-bookData.rating.average >= 2 ? normalSrc : (sitem-bookData.rating.average >= 1?halfSrc:selectedSrc))}}"></image>
+              </block>
+            <text class="viewers">{{bookData.rating.numRaters ? bookData.rating.numRaters : 0}}次评分</text>
+        </view>
+    </view>
+
+<view class="line"></view>
+
+    <view class="book-intro" wx:if="{{bookData.summary}}" style="margin-top:20rpx;">
+        <view class="intro-header"><text>简介</text></view>
+        <text class="intro-content">{{bookData.summary}}</text>
+    </view>
+<view class="line"></view>
+    <view class="book-intro" wx:if="{{bookData.author_intro}}">
+        <view class="intro-header"><text>作者</text></view>
+        <text class="intro-content">{{bookData.author_intro}}</text>
+    </view>
+</view>
+
+<loading hidden="{{loadidngHidden}}">
+    加载中...
+</loading>
