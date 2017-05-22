@@ -13,7 +13,6 @@ page {
     display: inline-block;
     width: 225rpx;
     height: 300rpx;
-    margin-top: 55rpx;
     box-shadow: 3px 3px 13px #CCC;
 }
 

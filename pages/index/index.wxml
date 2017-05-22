@@ -2,6 +2,7 @@
   <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
   <!--<icon bindtap="searchClickEvent"  type="search" size="20"/>-->
   <view class="{{flag==0?'hide':'show'}}"><icon bindtap="clearBtn" type="clear" color="#FFFFFF" /></view>
+  <button type="default" class="mini-btn" size="mini">搜索</button>
 </view>
 
 <scroll-view scroll-y="true" style="height:{{scrollHeight}}px"
@@ -18,6 +19,21 @@
       <!--<text style="font-size:30rpx;">读万卷书·行万里路</text>-->
     </view>
 
+
+  <!--<view class="chat-item flex-wrp">
+    <view class="avatar flex-item">
+      <image src="../../images/star.png"></image>
+    </view>
+    <view class="chat-content flex-item">
+      <view class="chat-source">
+        <text class="chatmate">George</text>
+        <text class="lasttime">3 个月前</text>
+      </view>
+      <text class="chat-txt">你好~ 你好~ 你好~</text>
+    </view>
+  </view>-->
+
+
     <view class="header" wx:if="{{totalRecord > 0 && !isInit}}">
       <!--<text>{{totalRecord}}个搜索结果</text>-->
       共 <text>{{totalRecord}}</text> 个搜索结果
@@ -33,8 +49,10 @@
             </view>
             <view class="content">
               <view class="title">{{item.title}}</view>
+              <view class="test">
+                <image src="../../images/list_go01.png"></image>
+              </view>
               <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
-
               <!--<text class="desc">{{item.rating.average == '0.0' ? '无' : item.rating.average}}/<block wx:for="{{item.author}}" wx:for-item="it" wx:key="*this">{{it}}/</block>{{item.pubdate}}</text>-->
               <block wx:for="{{stars}}" wx:for-item="sitem">
                 <image class="star-image" style="left: {{(sitem==2?0:sitem-sitem/2-1)*30}}rpx" 

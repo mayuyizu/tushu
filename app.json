@@ -1,12 +1,38 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#42BD56",
     "navigationBarTitleText": "徒 • 书",
     "navigationBarTextStyle": "white"
-  }
+  },
+    "tabBar": {
+      "color": "#626567",
+      "selectedColor": "#2A8CE5",
+      "backgroundColor": "#FBFBFB",
+      "borderStyle": "white",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "搜索",
+          "iconPath": "images/search_un.png",
+          "selectedIconPath": "images/search_ed.png"
+        },
+        {
+          "pagePath": "pages/about/about",
+          "text": "关于",
+          "iconPath": "images/about_un.png",
+          "selectedIconPath": "images/about_ed.png"
+        }
+      ]
+    },
+    "networkTimeout": {
+      "request": 60000,
+      "downloadFile": 60000
+    },
+    "debug": true
 }

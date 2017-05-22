@@ -1,5 +1,6 @@
 <view wx:if="{{bookData}}">
-    <view class="cover-container" style="background-image: url('http://a1.qpic.cn/psb?/V12aZXw23zEB3R/QY.cmKNgkx8FG4wH*HkFmH5dEmJhpRuh*b.URJlN690!/b/dPYAAAAAAAAA&bo=dwHhAHcB4QADCSw!&rf=viewer_4');">
+    <!--<view class="cover-container" style="background-image: url('http://a1.qpic.cn/psb?/V12aZXw23zEB3R/QY.cmKNgkx8FG4wH*HkFmH5dEmJhpRuh*b.URJlN690!/b/dPYAAAAAAAAA&bo=dwHhAHcB4QADCSw!&rf=viewer_4');">-->
+    <view class="cover-container" style="background-image: url('../../images/book_bg01.png');">
         <image src="{{bookData.image}}"></image>
     </view>
 
