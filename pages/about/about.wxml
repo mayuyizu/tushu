@@ -1,2 +1,14 @@
-<!--pages/about/about.wxml-->
-<text>pages/about/about.wxml</text>
+
+<view class="about">
+  <image src="../../images/bk.png" />
+  <text style="font-size:45rpx;">徒书</text>
+  <text style="color:#888;">版本：1.1</text>
+  <view class="line"></view>
+</view>
+<view class="contact">
+  <text>邮箱：</text>
+  <text>mayuzone.com@163.com</text>
+  <view style="margin-top:20rpx;"><text style="color:#888;">其他功能紧锣密鼓抽空开发中</text></view>
+</view>
+
+

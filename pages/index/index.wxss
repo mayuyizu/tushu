@@ -40,7 +40,7 @@ page {
   z-index: 10;
   top: 50%;
   margin-top: -20rpx;
-  right: 40rpx;
+  right: 200rpx;
 }
 
 /*header*/
@@ -133,6 +133,15 @@ page {
 }
 
 .test{
+  height: 50rpx;
+  width: 50rpx;
   float: right;
-  background: red;
+  /*background: red;*/
+  margin-top: 10rpx;
+}
+
+.line{
+  height: 0.5rpx;
+  width: 100%;
+  background: #EDEDED;
 }

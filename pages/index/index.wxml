@@ -1,8 +1,8 @@
 <view class="search-container">
   <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
   <!--<icon bindtap="searchClickEvent"  type="search" size="20"/>-->
-  <view class="{{flag==0?'hide':'show'}}"><icon bindtap="clearBtn" type="clear" color="#FFFFFF" /></view>
-  <button type="default" class="mini-btn" size="mini">搜索</button>
+  <view class="{{flag==0?'hide':'show'}}"><icon bindtap="clearBtn" type="clear" color="#888" size="23"/></view>
+  <button type="default" class="mini-btn" size="mini" bindtap="searchClickEvent">搜索</button>
 </view>
 
 <scroll-view scroll-y="true" style="height:{{scrollHeight}}px"
@@ -49,9 +49,9 @@
             </view>
             <view class="content">
               <view class="title">{{item.title}}</view>
-              <view class="test">
-                <image src="../../images/list_go01.png"></image>
-              </view>
+              <!--<view class="test">-->
+                <image class="test" src="../../images/list_go01.png"></image>
+              <!--</view>-->
               <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
               <!--<text class="desc">{{item.rating.average == '0.0' ? '无' : item.rating.average}}/<block wx:for="{{item.author}}" wx:for-item="it" wx:key="*this">{{it}}/</block>{{item.pubdate}}</text>-->
               <block wx:for="{{stars}}" wx:for-item="sitem">
@@ -61,6 +61,7 @@
             </view>
           </view>
         </view>
+        <view class="line"></view>
       </block>
 
     </view>

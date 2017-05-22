@@ -41,20 +41,26 @@ Page({
   //搜索输入框输入取值
   searchInputEvent: function (e) {
     console.log(e.detail.value);
+    var f=0;
+    if ("" == e.detail.value){
+      f=0;
+    }else{
+      f=1;
+    }
     this.setData(
-      { 
+      {
         searchKey: e.detail.value,
-        flag:1
+        flag:f
       }
     );
     
   },
 
   clearBtn:function(e){
-    console.log("clearBtn");
     this.setData({
       searchKey:"",
-      flag:0
+      flag:0,
+      isInit:true
     });
   },
 

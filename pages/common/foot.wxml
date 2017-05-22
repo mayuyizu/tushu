@@ -1,0 +1,6 @@
+<template name="foot">
+  <navigator class="page-foot" openType="switchTab" url="" hover-class="none">
+    <!--<image class="" src="../../images/star.png"></image>-->
+    <text>- 徒・书 -</text>
+  </navigator>
+</template>
