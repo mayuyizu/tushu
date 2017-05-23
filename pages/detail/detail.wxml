@@ -25,17 +25,18 @@
           </view>
       </view>
 
-  <view class="line"></view>
+      <view class="line"></view>
 
       <view class="book-intro" wx:if="{{bookData.summary}}" style="margin-top:20rpx;">
           <view class="intro-header"><text>简介</text></view>
           <text class="intro-content">{{bookData.summary}}</text>
       </view>
-  <view class="line"></view>
+      <!--<view class="line"></view>-->
       <view class="book-intro" wx:if="{{bookData.author_intro}}">
           <view class="intro-header"><text>作者</text></view>
           <text class="intro-content">{{bookData.author_intro}}</text>
       </view>
+      <view class="line"></view>
   </view>
 
   <template is="{{tName}}"/>
