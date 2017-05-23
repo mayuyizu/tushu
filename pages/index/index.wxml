@@ -1,7 +1,7 @@
 <view class="search-container">
   <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
   <!--<icon bindtap="searchClickEvent"  type="search" size="20"/>-->
-  <view class="{{flag==0?'hide':'show'}}"><icon bindtap="clearBtn" type="clear" color="#888" size="23"/></view>
+  <view  bindtap="clearBtn" class="{{flag==0?'hide':'show'}}"><icon type="clear" color="#888" size="23"/></view>
   <button type="default" class="mini-btn" size="mini" bindtap="searchClickEvent">搜索</button>
 </view>
 
@@ -14,7 +14,7 @@
     </view>
 
     <view class="logo" wx:if="{{isInit}}">
-      <image src="../../images/bk.png" />
+      <image src="../../images/logo_0.png" />
       <view><text>行万里路·读万卷书</text></view>
       <!--<text style="font-size:30rpx;">读万卷书·行万里路</text>-->
     </view>

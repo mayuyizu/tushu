@@ -31,8 +31,8 @@
       ]
     },
     "networkTimeout": {
-      "request": 60000,
-      "downloadFile": 60000
+      "request": 10000,
+      "downloadFile": 10000
     },
     "debug": true
 }

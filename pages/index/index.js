@@ -60,7 +60,9 @@ Page({
     this.setData({
       searchKey:"",
       flag:0,
-      isInit:true
+      isInit:true,
+      pageIndex: 0,
+      pageData: []
     });
   },
 

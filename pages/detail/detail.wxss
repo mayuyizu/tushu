@@ -89,3 +89,9 @@ page {
   width: 100%;
   background: #EDEDED;
 }
+.hide{
+    display:none
+}
+.show{
+    display:block
+}

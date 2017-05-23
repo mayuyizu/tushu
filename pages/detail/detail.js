@@ -8,7 +8,7 @@ Page( {
     normalSrc: '../../images/starG.png',
     selectedSrc: '../../images/star.png',
     halfSrc: '../../images/starH.png',
-    
+    tName: '',//控制footer
     id: null,
     loadidngHidden: false,
     bookData: null
@@ -22,7 +22,7 @@ Page( {
   //share
   onShareAppMessage: function () {
     return {
-      title: '随时随地查阅你感兴趣的图书',
+      title: '随时随地帮您查询图书信息',
       // path: '/page/user?id=123',
 
       success: function (res) {
@@ -54,6 +54,12 @@ Page( {
       _this.setData( {
         loadidngHidden: true
       });
+
+      setTimeout(
+        _this.setData({
+          tName: 'foot'
+        }), 1000);
+
     });
   }
 });

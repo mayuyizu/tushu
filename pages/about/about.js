@@ -61,6 +61,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '随时随地帮您查询图书信息',
+      // path: '/page/user?id=123',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
+
 })
