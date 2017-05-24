@@ -5,6 +5,7 @@
   width: 200rpx;
   height: 300rpx;
   font-size: 26rpx;
+  background: #F1F1F1;
 }
 .flex-item-V{
   margin: 0 auto;
