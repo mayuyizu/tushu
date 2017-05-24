@@ -1,11 +1,24 @@
-// pages/explore/explore.js
+var requests = require('../../requests/request.js');
+var utils = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    //star
+    stars: [2, 4, 6, 8, 10],
+    normalSrc: '../../images/starG.png',
+    selectedSrc: '../../images/star.png',
+    halfSrc: '../../images/starH.png',
+    scrollHeight: 0, //scroll-view高度
+    pageIndex: 0, //页码
+    totalRecord: 0, //图书总数
+    isInit: true, //是否第一次进入应用
+    loadingMore: false, //是否正在加载更多
+    pageData: [],//图书数据
+    recommendedData:[]//推荐图书
   },
 
   /**
@@ -19,7 +32,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.setData({ pageIndex: 0, pageData: [] });
+    requestData.call(this);
+    requestRecommendedData.call(this);
   },
 
   /**
@@ -56,11 +71,98 @@ Page({
   onReachBottom: function () {
   
   },
+  
+  /**
+   * 跳转到详细页面
+   */
+  toDetailPage: function (e) {
+    var bid = e.currentTarget.dataset.bid; //图书id [data-bid]
+    wx.navigateTo({
+      url: '../detail/detail?id=' + bid
+    });
+  }
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
   
-  }
-})
+  // }
+});
+
+/**
+ * 热门
+ */
+function requestData() {
+  var _this = this;
+  var start = this.data.pageIndex;
+  var _pageData = [];
+  this.setData({ loadingMore: true, isInit: false });
+  updateRefresh.call(this);
+  requests.requestSearchBook({ tag: '热门', start: start }, (data) => {
+    if (data.total == 0) {
+      //没有记录
+      _this.setData({ totalRecord: 0 });
+    } else {
+      var i;
+      for (i = 0; i < data.books.length; i++) {
+        if ("0.0" != data.books[i].rating.average) {
+          data.books[i].rating.average = parseFloat(data.books[i].rating.average);
+          _pageData = _pageData.concat(data.books[i]);
+        }
+
+      }
+      _this.setData({
+        pageData: _pageData,//_this.data.pageData.concat(data.books),
+        pageIndex: start + 5,
+        totalRecord: data.total
+      });
+      wx.hideLoading();
+    }
+  }, () => {
+    _this.setData({ totalRecord: 0 });
+  }, () => {
+    _this.setData({ loadingMore: false });
+  });
+}
+/**
+ * 推荐
+ */
+function requestRecommendedData() {
+  var _this = this;
+  var _pageData = [];
+  requests.requestSearchBook({ tag: '推荐', count: 3 }, (data) => {
+    if (data.total == 0) {
+      //没有记录
+    } else {
+      var i;
+      for (i = 0; i < data.books.length; i++) {
+        if ("0.0" != data.books[i].rating.average) {
+          // data.books[i].rating.average = parseFloat(data.books[i].rating.average);
+          _pageData = _pageData.concat(data.books[i]);
+        }
+
+      }
+      _this.setData({
+        recommendedData: _pageData
+      });
+    }
+    console.log(_this.data.recommendedData);
+  }, () => {
+    _this.setData({ totalRecord: 0 });
+  }, () => {
+    _this.setData({ loadingMore: false });
+  });
+}
+
+/**
+ * 刷新
+ */
+function updateRefresh() {
+  wx.showLoading({
+    title: '加载中',
+  })
+  setTimeout(function () {
+    wx.hideLoading()
+  }, 5000)
+}

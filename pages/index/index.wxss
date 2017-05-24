@@ -140,16 +140,10 @@ page {
   line-height: 34rpx;
 }
 
-.test{
+.arrow{
   height: 50rpx;
   width: 50rpx;
   float: right;
   /*background: red;*/
   margin-top: 10rpx;
-}
-
-.line{
-  height: 0.5rpx;
-  width: 100%;
-  background: #EDEDED;
 }

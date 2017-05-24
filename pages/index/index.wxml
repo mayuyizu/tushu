@@ -52,7 +52,7 @@
             <view class="content">
               <view class="title">{{item.title}}</view>
               <!--<view class="test">-->
-                <image class="test" src="../../images/list_go01.png"></image>
+                <image class="arrow" src="../../images/list_go01.png"></image>
               <!--</view>-->
               <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
               <!--<text class="desc">{{item.rating.average == '0.0' ? '无' : item.rating.average}}/<block wx:for="{{item.author}}" wx:for-item="it" wx:key="*this">{{it}}/</block>{{item.pubdate}}</text>-->

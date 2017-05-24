@@ -1,2 +1,62 @@
-<!--pages/explore/explore.wxml-->
-<text>pages/explore/explore.wxml</text>
+<view class="container">
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="page-section-title">
+        <text>推荐</text>
+      </view>
+
+      <view class="page-section-spacing">
+        <view class="flex-wrp" style="flex-direction:row;justify-content:space-around;">
+          <view>
+            <image data-bid="{{recommendedData[0].id}}" bindtap="toDetailPage" class="flex-item" src="{{recommendedData[0].images.large}}" />
+          </view>
+          <view>
+            <image data-bid="{{recommendedData[1].id}}" bindtap="toDetailPage" class="flex-item" src="{{recommendedData[1].images.large}}" />
+          </view>
+          <view>
+            <image data-bid="{{recommendedData[2].id}}" bindtap="toDetailPage" class="flex-item" src="{{recommendedData[2].images.large}}" />
+          </view>
+        </view>
+      </view>
+      <button type="primary" loading="true" style="width:30%;height:50rpx;;font-size:25rpx;text-align:center;color:white;margin-top:10rpx;">换一换</button>
+    </view>
+
+
+  <view class="line"></view>
+
+    <view class="page-section">
+      <view class="page-section-title">
+        <text>热门</text>
+      </view>
+
+      <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
+        <image src="../../images/logo_0.png" />
+        <view><text>行万里路·读万卷书</text></view>
+      </view>
+
+      <view class="common-list" wx:if="{{totalRecord > 0}}">
+        <block wx:for="{{pageData}}" wx:for-item="item">
+          <view class="list-item" data-bid="{{item.id}}" bindtap="toDetailPage">
+            <view class="index-list-item">
+              <view class="cover">
+                <image class="cover-img" src="{{item.image}}"></image>
+              </view>
+              <view class="content">
+                <view class="title">{{item.title}}</view>
+                  <image class="arrow" src="../../images/list_go01.png"></image>
+                <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
+                <block wx:for="{{stars}}" wx:for-item="sitem">
+                  <image class="star-image" style="left: {{(sitem==2?0:sitem-sitem/2-1)*30}}rpx" 
+                    src="{{item.rating.average >= sitem ? selectedSrc : (sitem-item.rating.average >= 2 ? normalSrc : (sitem-item.rating.average >= 1?halfSrc:selectedSrc))}}"></image>
+                </block><text class="grades">{{item.rating.average}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="line"></view>
+        </block>
+       </view>
+    </view>
+
+  </view>
+</view>

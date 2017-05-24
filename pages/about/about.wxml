@@ -6,9 +6,9 @@
   <view class="line"></view>
 </view>
 <view class="contact">
-  <text>邮箱：</text>
+  <text>开发者：</text>
   <text>mayuzone.com@163.com</text>
-  <view style="margin-top:20rpx;"><text style="color:#888;">其他功能紧锣密鼓抽空开发中</text></view>
+  <view style="margin-top:20rpx;"><text style="color:#888;">更多功能紧锣密鼓抽空开发中</text></view>
 </view>
 
 
