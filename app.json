@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/detail/detail",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/explore/explore"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,6 +22,12 @@
           "text": "搜索",
           "iconPath": "images/search_un.png",
           "selectedIconPath": "images/search_ed.png"
+        },
+        {
+          "pagePath": "pages/explore/explore",
+          "text": "发现",
+          "iconPath": "images/explore_un.png",
+          "selectedIconPath": "images/explore_ed.png"
         },
         {
           "pagePath": "pages/about/about",

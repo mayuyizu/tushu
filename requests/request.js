@@ -28,7 +28,14 @@ function request(url, data, successCb, errorCb, completeCb) {
  * 搜索图书
  */
 function requestSearchBook(data, successCb, errorCb, completeCb) {
-    request(api.API_BOOK_SEARCH, data, successCb, errorCb, completeCb);
+  request(api.API_BOOK_SEARCH, data, successCb, errorCb, completeCb);
+}
+
+/**
+ * 通过条码搜索图书
+ */
+function requestSearchBookByScan(isbn, data, successCb, errorCb, completeCb) {
+  request(api.API_BOOK_ISBN.replace(':name', isbn), data, successCb, errorCb, completeCb);
 }
 
 /**
@@ -47,6 +54,7 @@ function requestHasTag(tag, successCb, errorCb, completeCb) {
 
 module.exports = {
   requestSearchBook: requestSearchBook,
+  requestSearchBookByScan: requestSearchBookByScan,
   requestBookDokDetail: requestBookDokDetail
 }
 

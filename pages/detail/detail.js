@@ -39,7 +39,7 @@ Page( {
     var _this = this;
     requests.requestBookDokDetail(
       id, 
-      {fields: 'image,summary,publisher,title,rating,pubdate,author,author_intro,catalog'}, 
+      { fields: 'image,images,summary,publisher,title,rating,pubdate,author,author_intro,catalog,price'}, 
       ( data ) => {
 
         data.rating.average = parseFloat(data.rating.average);

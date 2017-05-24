@@ -2,7 +2,7 @@
 <view class="about">
   <image src="../../images/logo_1.png" />
   <text style="font-size:45rpx;">徒书</text>
-  <text style="color:#888;">版本：1.1</text>
+  <text style="color:#888;">版本：1.2</text>
   <view class="line"></view>
 </view>
 <view class="contact">

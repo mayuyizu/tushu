@@ -14,9 +14,10 @@ Page({
     selectedSrc: '../../images/star.png',
     halfSrc: '../../images/starH.png',
     key: 0,//评分
-    //star
 
-    flag:0,//控制clear按钮显示与隐藏
+    jan:'',//条形码
+    flagDel:0,//控制clear按钮显示与隐藏
+    flagScan:1,
     scrollHeight: 0, //scroll-view高度
     pageIndex: 0, //页码
     totalRecord: 0, //图书总数
@@ -41,25 +42,40 @@ Page({
   //搜索输入框输入取值
   searchInputEvent: function (e) {
     console.log(e.detail.value);
-    var f=0;
+    var _flagDel=0;
+    var _flagScan=1;
     if ("" == e.detail.value){
-      f=0;
+      _flagDel=0;
+      _flagScan=1;
     }else{
-      f=1;
+      _flagDel=1;
+      _flagScan=0;
     }
+
     this.setData(
       {
         searchKey: e.detail.value,
-        flag:f
+        flagDel: _flagDel,
+        flagScan: _flagScan
       }
     );
-    
+
+    // setTimeout(function () {
+    //   this.setData(
+    //     {
+    //       searchKey: e.detail.value,
+    //       flagDel: _flagDel,
+    //       flagScan: _flagScan
+    //     }
+    //   );
+    // }, 300)
   },
 
   clearBtn:function(e){
     this.setData({
       searchKey:"",
-      flag:0,
+      flagDel:0,
+      flagScan:1,
       isInit:true,
       pageIndex: 0,
       pageData: []
@@ -73,6 +89,21 @@ Page({
     }
     this.setData({ pageIndex: 0, pageData: [] });
     requestData.call(this);
+  },
+
+  searchScanEvent:function(e){
+    // 允许从相机和相册扫码
+    wx.scanCode({
+      success: (res) => {
+        console.log(res.result);
+        this.setData({jan:res.result, pageIndex: 0, pageData: [] });
+        requestDataByScan.call(this);
+        // var bid = res.result; //图书id [data-bid]
+        // wx.navigateTo({
+        //   url: '../detail/detail?id=' + bid
+        // });
+      }
+    })
   },
 
   //下拉请求数据
@@ -139,6 +170,33 @@ function requestData() {
         totalRecord: data.total
       });
       console.log(typeof (_this.data.pageData[0].rating.average));
+      wx.hideLoading();
+    }
+  }, () => {
+    _this.setData({ totalRecord: 0 });
+  }, () => {
+    _this.setData({ loadingMore: false });
+  });
+}
+
+/**
+ * 扫码获取图书信息
+ */
+function requestDataByScan() {
+  var _this = this;
+  this.setData({ loadingMore: true, isInit: false });
+  updateRefreshBall.call(this);
+  requests.requestSearchBookByScan(this.data.jan, {}, (data) => {
+    if (""==data) {
+      //没有记录
+      _this.setData({ totalRecord: 0 });
+    } else {
+      data.rating.average = parseFloat(data.rating.average);
+      _this.setData({
+        pageData: _this.data.pageData.concat(data),
+        pageIndex: 0,
+        totalRecord: data==""?0:1
+      });
       wx.hideLoading();
     }
   }, () => {
