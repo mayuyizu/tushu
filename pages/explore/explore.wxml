@@ -19,7 +19,7 @@
           </view>
         </view>
       </view>
-      <button type="primary" loading="true" style="width:30%;height:50rpx;;font-size:25rpx;text-align:center;color:white;margin-top:10rpx;">换一换</button>
+      <button type="primary" loading="{{btnLoading}}" bindtap="changeBook" class="" plain="true" style="width:30%;font-size:25rpx;color:#888;margin-top:30rpx;text-align: center;">换一换</button>
     </view>
 
 

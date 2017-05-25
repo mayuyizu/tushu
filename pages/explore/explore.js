@@ -17,7 +17,9 @@ Page({
     totalRecord: 0, //图书总数
     isInit: true, //是否第一次进入应用
     loadingMore: false, //是否正在加载更多
+    btnLoading:false,//按钮上的loading效果
     pageData: [],//图书数据
+    recommendIndex: 0,//parseInt((Math.random() * 90 + 1), 10),//1-90随机数
     recommendedData:[]//推荐图书
   },
 
@@ -32,7 +34,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({ pageIndex: 0, pageData: [] });
+    this.setData({ btnLoading: true, recommendIndex: parseInt((Math.random() * 90 + 1), 10),recommendedData:[],pageIndex: 0, pageData: [] });
     requestData.call(this);
     requestRecommendedData.call(this);
   },
@@ -80,6 +82,14 @@ Page({
     wx.navigateTo({
       url: '../detail/detail?id=' + bid
     });
+  },
+
+  /**
+   * 换一换（推荐）
+   */
+  changeBook:function(e){
+    this.setData({ btnLoading: true, recommendedData: []});
+    requestRecommendedData.call(this);
   }
 
   /**
@@ -97,9 +107,14 @@ function requestData() {
   var _this = this;
   var start = this.data.pageIndex;
   var _pageData = [];
+  //随机数1-90
+  var num = Math.random()*90 + 1;
+  num = parseInt(num, 10);//参数二：进制
+  console.log("radom:" + num);
+
   this.setData({ loadingMore: true, isInit: false });
   updateRefresh.call(this);
-  requests.requestSearchBook({ tag: '热门', start: start }, (data) => {
+  requests.requestSearchBook({ tag: '热门', start: num, count: 10}, (data) => {
     if (data.total == 0) {
       //没有记录
       _this.setData({ totalRecord: 0 });
@@ -114,7 +129,7 @@ function requestData() {
       }
       _this.setData({
         pageData: _pageData,//_this.data.pageData.concat(data.books),
-        pageIndex: start + 5,
+        pageIndex: start + 10,
         totalRecord: data.total
       });
       wx.hideLoading();
@@ -131,7 +146,7 @@ function requestData() {
 function requestRecommendedData() {
   var _this = this;
   var _pageData = [];
-  requests.requestSearchBook({ tag: '推荐', count: 3 }, (data) => {
+  requests.requestSearchBook({ tag: '推荐', start: _this.data.recommendIndex, count: 3 }, (data) => {
     if (data.total == 0) {
       //没有记录
     } else {
@@ -144,6 +159,7 @@ function requestRecommendedData() {
 
       }
       _this.setData({
+        recommendIndex: _this.data.recommendIndex+3,
         recommendedData: _pageData
       });
     }
@@ -151,7 +167,7 @@ function requestRecommendedData() {
   }, () => {
     _this.setData({ totalRecord: 0 });
   }, () => {
-    _this.setData({ loadingMore: false });
+    _this.setData({ btnLoading: false });
   });
 }
 
