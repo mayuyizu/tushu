@@ -180,5 +180,5 @@ function updateRefresh() {
   })
   setTimeout(function () {
     wx.hideLoading()
-  }, 5000)
+  }, 10000)
 }
