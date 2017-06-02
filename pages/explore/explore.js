@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tmpFlag:0,//6.2-6.9
     //star
     stars: [2, 4, 6, 8, 10],
     normalSrc: '../../images/starG.png',
@@ -27,16 +28,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
+    var str = '2017-06-09 23:13:15';
+    str = str.replace(/-/g, "/");
+    var date = utils.formatTime(new Date(str));
+    var curDate = utils.formatTime(new Date());
+    if(curDate < date){
+      this.tmpFlag = 1;
+    }else{
+      this.tmpFlag = 0;
+    }
+    this.setData({
+      tmpFlag: this.tmpFlag
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({ btnLoading: true, recommendIndex: parseInt((Math.random() * 90 + 1), 10),recommendedData:[],pageIndex: 0, pageData: [] });
-    requestData.call(this);
-    requestRecommendedData.call(this);
+    if (!this.tmpFlag){
+      this.setData({ btnLoading: true, recommendIndex: parseInt((Math.random() * 90 + 1), 10), recommendedData: [], pageIndex: 0, pageData: [] });
+      requestData.call(this);
+      requestRecommendedData.call(this);
+    }
+    
   },
 
   /**
