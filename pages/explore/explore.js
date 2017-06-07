@@ -29,7 +29,7 @@ Page({
    */
   onLoad: function (options) {
 
-    var str = '2017-06-09 23:13:15';
+    var str = '2017-06-13 23:13:15';
     str = str.replace(/-/g, "/");
     var date = utils.formatTime(new Date(str));
     var curDate = utils.formatTime(new Date());

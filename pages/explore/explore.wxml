@@ -3,8 +3,8 @@
 
 
     <view class="{{tmpFlag?'show':'hide'}}">
-      <view style="text-align:center;">《徒书》工具简介</view>
-      <view style="text-indent:2em; padding:10rpx;"><text>这是一款查阅图书信息的小程序，可以随时随地帮助您查询感兴趣的图书信息。包括：图书封面、作者、出版商、图书简介、作者简介等，未来可能还会加入图书评论搜索及笔记搜索的小功能。当您坐车时，排队时，打开徒书小工具查询几本感兴趣的图书可乐而不为❤</text></view>
+      <!--<view style="text-align:center;">《徒书》工具简介</view>
+      <view style="text-indent:2em; padding:10rpx;"><text>这是一款查阅图书信息的小程序，可以随时随地帮助您查询感兴趣的图书信息。包括：图书封面、作者、出版商、图书简介、作者简介等，未来可能还会加入图书评论搜索及笔记搜索的小功能。当您坐车时，排队时，打开徒书小工具查询几本感兴趣的图书可乐而不为❤</text></view>-->
       <view class="logo" style="margin-top:20rpx;">
           <image src="../../images/logo_0.png" />
           <view><text>行万里路·读万卷书</text></view>
