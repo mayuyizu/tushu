@@ -37,6 +37,8 @@ Page({
         });
       }
     })
+    
+    // test.call(this);
   },
 
   //搜索输入框输入取值
@@ -227,4 +229,26 @@ function updateRefreshBall() {
   setTimeout(function () {
     wx.hideLoading()
   }, 5000)
+}
+
+/**
+ * test
+ */
+function test() {
+  wx.request({
+    url: "https://read.douban.com/j/article_v2/get_reader_data",
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    method: "POST",
+    data:{ aid: "32890883", reader_data_version: "v13" },
+    // data: Util.json2Form({ aid: "32890883", reader_data_version: v13  }),
+    complete: function (res) {
+      console.log(res);
+      if (res == null || res.data == null) {
+        console.error('网络请求失败');
+        return;
+      }
+    }
+  })
 }

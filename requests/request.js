@@ -52,9 +52,17 @@ function requestHasTag(tag, successCb, errorCb, completeCb) {
     request(api.API_BOOK_SEARCH, {tag: tag, count: 1}, successCb, errorCb, completeCb);
 }
 
+/**
+ * test
+ */
+function test(data, successCb, errorCb, completeCb) {
+  request(api.test,data, successCb, errorCb, completeCb);
+}
+
 module.exports = {
   requestSearchBook: requestSearchBook,
   requestSearchBookByScan: requestSearchBookByScan,
-  requestBookDokDetail: requestBookDokDetail
+  requestBookDokDetail: requestBookDokDetail,
+  test: test
 }
 
