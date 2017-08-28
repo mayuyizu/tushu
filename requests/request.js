@@ -7,7 +7,10 @@ var utils = require('../utils/util.js');
 function request(url, data, successCb, errorCb, completeCb) {
     wx.request({
         url: url,
-        method: 'GET',
+        // method: 'GET',//工具升级后不能再这样写，新的格式为下面head...
+        header: {
+          "Content-Type": "json"
+        },
         data: data,
         success: function(res) {
             if (res.statusCode == 200) {
