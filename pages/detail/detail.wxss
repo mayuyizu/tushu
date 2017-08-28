@@ -58,7 +58,8 @@ page {
     font-size: 40rpx;
 }
 .range .viewers {
-    font-size: 30rpx;
+    font-size: 25rpx;
+    margin-bottom: 3rpx;
 }
 
 .book-intro {
