@@ -23,17 +23,17 @@ page {
 .about text {
   display: block;
   font-size: 30rpx;
-  padding-top: 40rpx;
+  padding-top: 25rpx;
   color: black;
 }
 
 .contact {
   text-align:center;
-  margin-top: 100rpx;
+  margin-top: 80rpx;
 }
 
-.contact text {
-  padding-top:50rpx;
+.contact view {
+  padding-top:30rpx;
   font-size: 25rpx;
   color: black;
 }

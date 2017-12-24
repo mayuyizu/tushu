@@ -5,6 +5,7 @@ module.exports = {
   API_BOOK_DETAIL: API_BASE + "/:id",
   API_BOOK_ISBN: API_BASE + "/isbn/:name",
   API_BOOK_TAG: API_BASE + "/search?tag=:tag&count=:count",
+  API_BOOK_COMMENT: API_BASE + "/:id/comments?count=:count",
 
   test:"https://read.douban.com/j/article_v2/get_reader_data"
   /**

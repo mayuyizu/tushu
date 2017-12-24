@@ -52,7 +52,14 @@ function requestBookDokDetail(id, data, successCb, errorCb, completeCb) {
  * 关键字是否是tag
  */
 function requestHasTag(tag, successCb, errorCb, completeCb) {
-    request(api.API_BOOK_SEARCH, {tag: tag, count: 1}, successCb, errorCb, completeCb);
+  request(api.API_BOOK_SEARCH, { tag: tag, count: 1 }, successCb, errorCb, completeCb);
+}
+
+/**
+ *获取图书评论
+ */
+function requestBookComments(id, data, successCb, errorCb, completeCb) {
+  request(api.API_BOOK_COMMENT.replace(':id', id), data, successCb, errorCb, completeCb);
 }
 
 /**
@@ -66,6 +73,7 @@ module.exports = {
   requestSearchBook: requestSearchBook,
   requestSearchBookByScan: requestSearchBookByScan,
   requestBookDokDetail: requestBookDokDetail,
+  requestBookComments: requestBookComments,
   test: test
 }
 

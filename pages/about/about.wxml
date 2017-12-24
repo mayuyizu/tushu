@@ -2,13 +2,20 @@
 <view class="about">
   <image src="../../images/logo_1.png" />
   <text style="font-size:45rpx;">徒书</text>
-  <text style="color:#888;">版本：1.2</text>
+  <text style="color:#888;">版本：1.2.1</text>
   <view class="line"></view>
 </view>
 <view class="contact">
-  <text>开发者：</text>
-  <text>mayuzone.com@163.com</text>
-  <view style="margin-top:20rpx;"><text style="color:#888;">更多功能紧锣密鼓抽空开发中</text></view>
+  <view>
+    <text>邮箱：</text>
+    <text>mayuzone.com@163.com</text>
+  </view>
+  <view>
+    <text>微信：</text>
+    <text>494693207</text>
+  </view>
+  
+  <view style="margin-top:40rpx;"><text style="color:#888;">更多功能紧锣密鼓抽空开发中</text></view>
 </view>
 
 

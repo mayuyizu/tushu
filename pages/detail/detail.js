@@ -11,7 +11,10 @@ Page( {
     tName: '',//控制footer
     id: null,
     loadidngHidden: false,
-    bookData: null
+    bookData: null,
+    totalComments:0,
+    commentsData: [],
+    commentsRating: []
   },
   onLoad: function( option ) {
     this.setData({
@@ -48,6 +51,7 @@ Page( {
           bookData: data
         });
         console.log(typeof (_this.data.bookData.rating.average));
+        getComments.call(this);
     }, () => {
       wx.navigateBack();
     }, () => {
@@ -63,3 +67,33 @@ Page( {
     });
   }
 });
+
+function getComments() {
+  requests.requestBookComments(this.data.id, { count: 10 }, (data) => {
+    if (data.total == 0) {
+      //没有记录
+      this.setData({ totalComments: 0 });
+    } else {
+      var rating = [];
+      for (var i = 0; i < data.comments.length; i++) {
+        if(undefined!=data.comments[i].rating){
+          rating[i] = parseInt(data.comments[i].rating.value);
+        }else{
+          rating[i] = -1;
+        }
+        // data.comments[i].rating.value = parseInt(data.comments[i].rating.value);
+      }
+      this.setData({ 
+        totalComments: data.total,
+        commentsData : data.comments,
+        commentsRating: rating
+      });
+      console.log(commentsRating);
+    }
+  }, () => {
+    // wx.navigateBack();
+    console.log('e');
+  }, () => {
+    console.log('c');
+  });
+}

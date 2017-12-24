@@ -39,8 +39,20 @@
       <view class="line"></view>
   </view>
 
-  <template is="{{tName}}"/>
+    <view wx:if="{{totalComments > 0}}" style="margin-top:20rpx;">
+      <view style="padding:5rpx;font-size:30rpx;color:#AAA;">热门书评</view>
+      <block wx:for="{{commentsData}}" wx:for-item="item" wx:for-index="index1">
+        <view class="comments">
+            <text class="author">{{item.author.name}}</text>
+            <block wx:for="{{stars}}" wx:for-index="index"><image class="star" src="{{commentsRating[index1] >= (index+1) ? selectedSrc:normalSrc}}"></image></block>
+            <text class="published">{{item.published}}</text>
+          <text class="summary">{{item.summary}}</text>
+        </view>
+        <view class="line"></view>
+      </block>
+    </view>
 
+  <template is="{{tName}}"/><!--footer-->
   <loading hidden="{{loadidngHidden}}">
       加载中...
   </loading>
