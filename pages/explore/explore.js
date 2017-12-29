@@ -2,7 +2,6 @@ var requests = require('../../requests/request.js');
 var utils = require('../../utils/util.js');
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -120,20 +119,17 @@ Page({
  * 热门
  */
 function requestData() {
-  var _this = this;
   var start = this.data.pageIndex;
   var _pageData = [];
   //随机数1-90
   var num = Math.random()*90 + 1;
   num = parseInt(num, 10);//参数二：进制
   console.log("radom:" + num);
-
   this.setData({ loadingMore: true, isInit: false });
   updateRefresh.call(this);
   requests.requestSearchBook({ tag: '热门', start: num, count: 10}, (data) => {
     if (data.total == 0) {
-      //没有记录
-      _this.setData({ totalRecord: 0 });
+      this.setData({ totalRecord: 0 });
     } else {
       var i;
       for (i = 0; i < data.books.length; i++) {
@@ -141,30 +137,27 @@ function requestData() {
           data.books[i].rating.average = parseFloat(data.books[i].rating.average);
           _pageData = _pageData.concat(data.books[i]);
         }
-
       }
-      _this.setData({
-        pageData: _pageData,//_this.data.pageData.concat(data.books),
+      this.setData({
+        pageData: _pageData,//this.data.pageData.concat(data.books),
         pageIndex: start + 10,
         totalRecord: data.total
       });
       wx.hideLoading();
     }
   }, () => {
-    _this.setData({ totalRecord: 0 });
+    this.setData({ totalRecord: 0 });
   }, () => {
-    _this.setData({ loadingMore: false });
+    this.setData({ loadingMore: false });
   });
 }
 /**
  * 推荐
  */
 function requestRecommendedData() {
-  var _this = this;
   var _pageData = [];
-  requests.requestSearchBook({ tag: '推荐', start: _this.data.recommendIndex, count: 3 }, (data) => {
+  requests.requestSearchBook({ tag: '推荐', start: this.data.recommendIndex, count: 3 }, (data) => {
     if (data.total == 0) {
-      //没有记录
     } else {
       var i;
       for (i = 0; i < data.books.length; i++) {
@@ -174,16 +167,15 @@ function requestRecommendedData() {
         }
 
       }
-      _this.setData({
-        recommendIndex: _this.data.recommendIndex+3,
+      this.setData({
+        recommendIndex: this.data.recommendIndex+3,
         recommendedData: _pageData
       });
     }
-    console.log(_this.data.recommendedData);
   }, () => {
-    _this.setData({ totalRecord: 0 });
+    this.setData({ totalRecord: 0 });
   }, () => {
-    _this.setData({ btnLoading: false });
+    this.setData({ btnLoading: false });
   });
 }
 

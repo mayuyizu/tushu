@@ -1,22 +1,16 @@
 <view class="container">
   <view class="page-body">
-
-
     <view class="{{tmpFlag?'show':'hide'}}">
-      <!--<view style="text-align:center;">《徒书》工具简介</view>
-      <view style="text-indent:2em; padding:10rpx;"><text>这是一款查阅图书信息的小程序，可以随时随地帮助您查询感兴趣的图书信息。包括：图书封面、作者、出版商、图书简介、作者简介等，未来可能还会加入图书评论搜索及笔记搜索的小功能。当您坐车时，排队时，打开徒书小工具查询几本感兴趣的图书可乐而不为❤</text></view>-->
       <view class="logo" style="margin-top:20rpx;">
           <image src="../../images/logo_0.png" />
           <view><text>行万里路·读万卷书</text></view>
       </view>
     </view>
     <view class="{{tmpFlag?'hide':'show'}}">
-      
       <view class="page-section">
         <view class="page-section-title">
           <text>推荐</text>
         </view>
-
         <view class="page-section-spacing">
           <view class="flex-wrp" style="flex-direction:row;justify-content:space-around;">
             <view>
@@ -33,19 +27,16 @@
         <button type="primary" loading="{{btnLoading}}" bindtap="changeBook" class="" plain="true" style="width:30%;font-size:25rpx;color:#888;margin-top:30rpx;text-align: center;">换一换</button>
       </view>
 
-
     <view class="line"></view>
 
       <view class="page-section">
         <view class="page-section-title">
           <text>热门</text>
         </view>
-
         <view class="logo" wx:if="{{!loadingMore && totalRecord == 0 && !isInit}}">
           <image src="../../images/logo_0.png" />
           <view><text>行万里路·读万卷书</text></view>
         </view>
-
         <view class="common-list" wx:if="{{totalRecord > 0}}">
           <block wx:for="{{pageData}}" wx:for-item="item">
             <view class="list-item" data-bid="{{item.id}}" bindtap="toDetailPage">
@@ -68,7 +59,6 @@
           </block>
         </view>
       </view>
-
     </view>
   </view>
 </view>

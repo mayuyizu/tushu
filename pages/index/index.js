@@ -14,7 +14,6 @@ Page({
     selectedSrc: '../../images/star.png',
     halfSrc: '../../images/starH.png',
     key: 0,//评分
-
     jan:'',//条形码
     flagDel:0,//控制clear按钮显示与隐藏
     flagScan:1,
@@ -37,8 +36,6 @@ Page({
         });
       }
     })
-    
-    // test.call(this);
   },
 
   //搜索输入框输入取值
@@ -53,7 +50,6 @@ Page({
       _flagDel=1;
       _flagScan=0;
     }
-
     this.setData(
       {
         searchKey: e.detail.value,
@@ -61,16 +57,6 @@ Page({
         flagScan: _flagScan
       }
     );
-
-    // setTimeout(function () {
-    //   this.setData(
-    //     {
-    //       searchKey: e.detail.value,
-    //       flagDel: _flagDel,
-    //       flagScan: _flagScan
-    //     }
-    //   );
-    // }, 300)
   },
 
   clearBtn:function(e){
@@ -100,10 +86,6 @@ Page({
         console.log(res.result);
         this.setData({jan:res.result, pageIndex: 0, pageData: [] });
         requestDataByScan.call(this);
-        // var bid = res.result; //图书id [data-bid]
-        // wx.navigateTo({
-        //   url: '../detail/detail?id=' + bid
-        // });
       }
     })
   },
@@ -138,46 +120,39 @@ Page({
       }
     }
   }
-
 });
 
 /**
  * 请求图书信息
  */
 function requestData() {
-  var _this = this;
   var q = this.data.searchKey;
   var start = this.data.pageIndex;
 
   this.setData({ loadingMore: true, isInit: false });
   updateRefreshBall.call(this);
-  // console.log(start)
   requests.requestSearchBook({ q: q, start: start }, (data) => {
     if (data.total == 0) {
       //没有记录
-      _this.setData({ totalRecord: 0 });
+      this.setData({ totalRecord: 0 });
     } else {
-
       var i;
       console.log(typeof (data.books[0].rating.average));
       for (i = 0; i < data.books.length; i++) {
-        // console.log(data.books[i].rating.average);
         data.books[i].rating.average = parseFloat(data.books[i].rating.average);
       }
-      // console.log(typeof (data.books[0].rating.average));
-
-      _this.setData({
-        pageData: _this.data.pageData.concat(data.books),
+      this.setData({
+        pageData: this.data.pageData.concat(data.books),
         pageIndex: start + 20,
         totalRecord: data.total
       });
-      console.log(typeof (_this.data.pageData[0].rating.average));
+      console.log(typeof (this.data.pageData[0].rating.average));
       wx.hideLoading();
     }
   }, () => {
-    _this.setData({ totalRecord: 0 });
+    this.setData({ totalRecord: 0 });
   }, () => {
-    _this.setData({ loadingMore: false });
+    this.setData({ loadingMore: false });
   });
 }
 
@@ -185,26 +160,24 @@ function requestData() {
  * 扫码获取图书信息
  */
 function requestDataByScan() {
-  var _this = this;
   this.setData({ loadingMore: true, isInit: false });
   updateRefreshBall.call(this);
   requests.requestSearchBookByScan(this.data.jan, {}, (data) => {
     if (""==data) {
-      //没有记录
-      _this.setData({ totalRecord: 0 });
+      this.setData({ totalRecord: 0 });
     } else {
       data.rating.average = parseFloat(data.rating.average);
-      _this.setData({
-        pageData: _this.data.pageData.concat(data),
+      this.setData({
+        pageData: this.data.pageData.concat(data),
         pageIndex: 0,
         totalRecord: data==""?0:1
       });
       wx.hideLoading();
     }
   }, () => {
-    _this.setData({ totalRecord: 0 });
+    this.setData({ totalRecord: 0 });
   }, () => {
-    _this.setData({ loadingMore: false });
+    this.setData({ loadingMore: false });
   });
 }
 
@@ -212,16 +185,6 @@ function requestDataByScan() {
  * 刷新下拉效果变色球
  */
 function updateRefreshBall() {
-  // var cIndex = 0;
-  // var _this = this;
-  // var timer = setInterval(function () {
-  //   if (!_this.data['loadingMore']) {
-  //     clearInterval(timer);
-  //   }
-  //   if (cIndex >= iconColor.length)
-  //     cIndex = 0;
-  //   _this.setData({ footerIconColor: iconColor[cIndex++] });
-  // }, 100);
   wx.showLoading({
     title: '加载中',
   })

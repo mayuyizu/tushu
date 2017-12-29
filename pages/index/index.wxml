@@ -1,9 +1,7 @@
 <view class="search-container">
   <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
-  <!--<icon bindtap="searchClickEvent"  type="search" size="20"/>-->
   <image bindtap="clearBtn" class="{{flagDel==0?'hide':'show'}}" src="../../images/del.png" />
   <image bindtap="searchScanEvent" class="{{flagScan==0?'hide':'show'}}" src="../../images/scan.png" />
-  <!--<view  bindtap="clearBtn" class="{{flag==0?'hide':'show'}}"><icon type="clear" color="#888" size="23"/></view>-->
   <button type="default" class="mini-btn" size="mini" bindtap="searchClickEvent">搜索</button>
 </view>
 
@@ -18,31 +16,13 @@
     <view class="logo" wx:if="{{isInit}}">
       <image src="../../images/logo_0.png" />
       <view><text>行万里路·读万卷书</text></view>
-      <!--<text style="font-size:30rpx;">读万卷书·行万里路</text>-->
     </view>
-
-
-  <!--<view class="chat-item flex-wrp">
-    <view class="avatar flex-item">
-      <image src="../../images/star.png"></image>
-    </view>
-    <view class="chat-content flex-item">
-      <view class="chat-source">
-        <text class="chatmate">George</text>
-        <text class="lasttime">3 个月前</text>
-      </view>
-      <text class="chat-txt">你好~ 你好~ 你好~</text>
-    </view>
-  </view>-->
-
 
     <view class="header" wx:if="{{totalRecord > 0 && !isInit}}">
-      <!--<text>{{totalRecord}}个搜索结果</text>-->
       共 <text>{{totalRecord}}</text> 个搜索结果
     </view>
 
     <view class="common-list" wx:if="{{totalRecord > 0}}">
-
       <block wx:for="{{pageData}}" wx:for-item="item">
         <view class="list-item" data-bid="{{item.id}}" bindtap="toDetailPage">
           <view class="index-list-item">
@@ -51,11 +31,8 @@
             </view>
             <view class="content">
               <view class="title">{{item.title}}</view>
-              <!--<view class="test">-->
-                <image class="arrow" src="../../images/list_go01.png"></image>
-              <!--</view>-->
+              <image class="arrow" src="../../images/list_go01.png"></image>
               <text class="desc"><block wx:for="{{item.author.length==1?item.author:item.author+''}}">{{item}}</block></text>
-              <!--<text class="desc">{{item.rating.average == '0.0' ? '无' : item.rating.average}}/<block wx:for="{{item.author}}" wx:for-item="it" wx:key="*this">{{it}}/</block>{{item.pubdate}}</text>-->
               <block wx:for="{{stars}}" wx:for-item="sitem">
                 <image class="star-image" style="left: {{(sitem==2?0:sitem-sitem/2-1)*30}}rpx" 
                   src="{{item.rating.average >= sitem ? selectedSrc : (sitem-item.rating.average >= 2 ? normalSrc : (sitem-item.rating.average >= 1?halfSrc:selectedSrc))}}"></image>
@@ -65,11 +42,6 @@
         </view>
         <view class="line"></view>
       </block>
-
     </view>
-
-    <!--<view class="refresh-footer" wx:if="{{loadingMore}}">
-      <icon type="waiting" size="30" color="{{footerIconColor}}"  />
-    </view>-->
 
 </scroll-view>

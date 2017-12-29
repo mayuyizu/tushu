@@ -39,31 +39,25 @@ Page( {
   
   onReady: function() {
     var id = this.data.id;
-    var _this = this;
     requests.requestBookDokDetail(
       id, 
       { fields: 'image,images,summary,publisher,title,rating,pubdate,author,author_intro,catalog,price'}, 
       ( data ) => {
-
         data.rating.average = parseFloat(data.rating.average);
-
-        _this.setData({
+        this.setData({
           bookData: data
         });
-        console.log(typeof (_this.data.bookData.rating.average));
         getComments.call(this);
     }, () => {
       wx.navigateBack();
     }, () => {
-      _this.setData( {
+      this.setData( {
         loadidngHidden: true
       });
-
       setTimeout(
-        _this.setData({
+        this.setData({
           tName: 'foot'
         }), 1000);
-
     });
   }
 });
@@ -71,7 +65,6 @@ Page( {
 function getComments() {
   requests.requestBookComments(this.data.id, { count: 10 }, (data) => {
     if (data.total == 0) {
-      //没有记录
       this.setData({ totalComments: 0 });
     } else {
       var rating = [];
@@ -88,7 +81,6 @@ function getComments() {
         commentsData : data.comments,
         commentsRating: rating
       });
-      console.log(commentsRating);
     }
   }, () => {
     // wx.navigateBack();

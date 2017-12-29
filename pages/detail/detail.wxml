@@ -2,9 +2,7 @@
 
 <view class="">
   <view wx:if="{{bookData}}">
-      <!--<view class="cover-container" style="background: #42BD56;');">-->
       <view class="cover-container" style="background-image: url('http://r.photo.store.qq.com/psb?/V12aZXw23zEB3R/Kz*hVlrUcqPIQKgMD3WqECkPYmzx6tCSCQu8n7G8ock!/r/dIQBAAAAAAAA');">
-      <!--<view class="cover-container" style="background-image: url('../../images/book_bg01.png');">-->
           <image src="{{bookData.images.large}}"></image>
       </view>
 
