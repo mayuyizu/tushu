@@ -1,4 +1,5 @@
-const API_BASE = "https://api.douban.com/v2/book";
+// const API_BASE = "https://api.douban.com/v2/book";
+const API_BASE = "https://liudongtushuguan.cn/v2/book";
 
 module.exports = {
   API_BOOK_SEARCH: API_BASE + "/search",
