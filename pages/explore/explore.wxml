@@ -24,7 +24,7 @@
             </view>
           </view>
         </view>
-        <button type="primary" loading="{{btnLoading}}" bindtap="changeBook" class="" plain="true" style="width:30%;font-size:25rpx;color:#888;margin-top:30rpx;text-align: center;">换一换</button>
+        <button id="changeBook" type="primary" loading="{{btnLoading}}" bindtap="changeBook" plain="true" style="width:30%;font-size:25rpx;color:#888;margin-top:30rpx;text-align: center;">换一换</button>
       </view>
 
     <view class="line"></view>

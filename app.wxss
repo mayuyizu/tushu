@@ -2,6 +2,7 @@ page {
   font-family: 'microsoft yahei';
   height: 100%;
   background: white;
+  font-size: 30rpx;
 }
 
 /*
