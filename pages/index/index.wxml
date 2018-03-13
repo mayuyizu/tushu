@@ -1,5 +1,6 @@
+<view>GoodEveing,{{nickName}}</view>
 <view class="search-container">
-  <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"></input>
+  <input type="text" value="{{searchKey}}" bindinput="searchInputEvent" bindconfirm="searchClickEvent" placeholder="点此输入书名搜索"/>
   <image bindtap="clearBtn" class="{{flagDel==0?'hide':'show'}}" src="../../images/del.png" />
   <image id="scan" bindtap="searchScanEvent" class="{{flagScan==0?'hide':'show'}}" src="../../images/scan.png" />
   <button type="default" class="mini-btn" size="mini" bindtap="searchClickEvent">搜索</button>
